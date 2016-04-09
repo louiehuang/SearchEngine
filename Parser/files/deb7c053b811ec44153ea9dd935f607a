@@ -1,0 +1,375 @@
+www.hzsdyfz.com.cn/index.html
+网站首页-华中师大一附中
+9
+
+
+  
+    
+    
+    
+         
+          
+              
+  
+  
+    
+ 
+
+
+
+
+ 
+
+  
+     
+      
+         
+          2015年初中毕业生招生网上信息采集：
+          专县生信息采集
+          武汉市学生信息采集
+         
+          省外学生信息采集
+        
+      
+    
+  
+
+    
+  
+        
+            
+    
+
+    
+      
+ 
+             
+          
+        
+   
+            
+          
+        
+      
+  
+      
+        
+        
+          
+        
+        
+        
+          
+        
+      
+      
+    
+    
+    
+    
+      
+
+                
+
+            
+
+
+      
+                
+          
+        
+        
+        
+
+
+ 
+ 
+ 
+          
+        
+      
+           
+        
+          站内搜索
+        
+        
+         
+  
+
+
+        
+      
+      
+    
+               
+      
+    
+    
+    
+  
+
+
+   
+
+  
+
+
+
+
+  
+
+    
+
+       
+ 
+             
+        
+        
+   
+            
+          
+
+
+       
+ 
+             
+          
+        
+   
+            
+          
+        
+      
+
+   
+      
+
+      
+          
+
+         
+ 
+             
+          
+        
+   
+            
+          
+        
+      
+
+
+         
+ 
+             
+          
+        
+   
+            
+          
+        
+      
+
+          
+      
+
+      
+      
+
+              
+                
+          
+        
+        
+        
+ 
+
+ 
+ 
+ 
+  
+
+          
+        
+      
+
+
+      
+      
+
+      
+            
+             
+               
+             
+          
+        
+   
+            
+          
+        
+
+             
+            
+
+      
+
+  
+
+
+  
+    
+            
+          
+    
+            
+          
+    
+            
+          
+     
+            
+          
+  
+
+
+  
+  
+
+           
+   
+   
+   
+   
+   
+    管理登录|用户留言|友情链接  
+    
+    
+    
+    
+    
+    
+     用户登录：
+      
+      密码：
+      
+       
+      
+      
+       
+      
+     
+       
+        
+       忘记密码？
+      
+      
+      
+      
+      
+      
+      
+      
+      
+| "+xml.getElementsByTagName("username")[0].firstChild.data + "，您好！您有：";
+    userInfo = userInfo + "登录次数：" + xml.getElementsByTagName("logintimes")[0].firstChild.data + " 次";
+    userInfo = userInfo + "待签文章：" + xml.getElementsByTagName("signincontent")[0].firstChild.data + " 篇";
+    userInfo = userInfo + "会员中心&nbsp;&nbsp;|&nbsp;&nbsp;";
+    userInfo = userInfo + "退出登录";
+    userInfo = userInfo + "";
+    return userInfo;
+}
+
+function loginout(){
+    var x = new AjaxRequest('XML','');
+    x.post('userlogout', '/ajax.aspx', function(s) {
+    var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        if (status == "ok") {
+                if (xml.getElementsByTagName("API_Enable")[0].firstChild.data == "1") {
+                    var LogOutString = xml.getElementsByTagName("LogOutString")[0].firstChild.data;
+                    Loginin(LogOutString);
+                }
+         }
+        document.getElementById("TxtUserName").value = '';
+        document.getElementById("TxtPassword").value = '';
+        CheckEnableValidCode();
+        var VcodeLogOn = document.getElementById("VcodeLogOn");
+        if(VcodeLogOn  != null)
+        {
+	RefreshValdisplayDateCodeImage(VcodeLogOn);
+        }
+        document.getElementById("DropExpiration").value = 'None';
+        document.getElementById("PnlLogOnStatus").style.display = "none";
+        document.getElementById("LoginFrom").style.display = "";
+    });
+}
+
+function CheckEnableValidCode(){
+    var x = new AjaxRequest('XML', 'status');
+    x.para = [];
+    x.post('EnableValidCode', '/ajax.aspx', function(s){
+        var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        if (status == "yes") {
+            document.getElementById("checkcode").style.display = '';
+            document.getElementById("TxtValdisplayDateCode").value = '';
+        }
+    });
+}
+
+function Login(){
+    if (document.getElementById("TxtUserName").value == '') {
+        alert("请填写用户名！");
+        document.getElementById("TxtUserName").focus();
+        return;
+    }
+    if (document.getElementById("TxtPassword").value == '') {
+        alert("请填写密码！");
+        document.getElementById("TxtPassword").focus();
+        return;
+    }
+    
+    if(document.getElementById("checkcode").style.display=="")
+    {
+      if (document.getElementById("TxtValdisplayDateCode").value == '') {
+          alert("请填写验证码！");
+          document.getElementById("TxtValdisplayDateCode").focus();
+          return;
+      }
+    }
+    var x = new AjaxRequest('XML', 'status');
+    x.para = ['username=' + document.getElementById("TxtUserName").value, 'password=' + document.getElementById("TxtPassword").value, 'checkcode=' + document.getElementById("TxtValdisplayDateCode").value, 'expiration=' + document.getElementById("DropExpiration").value];
+    x.post('userlogin', '/ajax.aspx', function(s){
+        var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        switch (status) {
+            case "ok":
+                if (xml.getElementsByTagName("API_Enable")[0].firstChild.data == "1") {
+                    var LoginString = xml.getElementsByTagName("LoginString")[0].firstChild.data;
+                    Loginin(LoginString);
+                }
+                CheckIsLogin();
+                break;
+            case "err":
+                var errorMessage = xml.getElementsByTagName("body")[0].firstChild.data;
+                alert(errorMessage);
+                break;
+
+        }
+        
+    });
+}
+
+      
+      
+      
+    
+    
+        
+       鄂ICP备05004659号 ┋ 网站管理：现代教育技术处 ┋管理员邮箱:22738887@qq.com（仅交流网站建设） 校长信箱：hsyxb01@163.com
+      学校地址：湖北省武汉市东湖高新技术开发区汤逊湖北路特1号 邮编：430223 
+    
+  
+   
+

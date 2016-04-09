@@ -1,0 +1,72 @@
+portal.ccnu.edu.cn/loginAction.do
+500 Servlet Exception
+9
+
+
+
+
+[show] java.lang.NullPointerException
+
+javax.servlet.ServletException: java.lang.NullPointerException
+	at org.apache.struts.action.RequestProcessor.processException(RequestProcessor.java:545)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:486)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doGet(ActionServlet.java:507)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:119)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:96)
+	at com.caucho.server.dispatch.ServletFilterChain.doFilter(ServletFilterChain.java:109)
+	at portal.sys.CharacterEncoding.doFilter(CharacterEncoding.java:21)
+	at com.caucho.server.dispatch.FilterFilterChain.doFilter(FilterFilterChain.java:89)
+	at com.caucho.server.webapp.WebAppFilterChain.doFilter(WebAppFilterChain.java:156)
+	at com.caucho.server.webapp.AccessLogFilterChain.doFilter(AccessLogFilterChain.java:95)
+	at com.caucho.server.dispatch.ServletInvocation.service(ServletInvocation.java:287)
+	at com.caucho.server.hmux.HmuxRequest.handleInvocation(HmuxRequest.java:469)
+	at com.caucho.server.hmux.HmuxRequest.handleRequestImpl(HmuxRequest.java:374)
+	at com.caucho.server.hmux.HmuxRequest.handleRequest(HmuxRequest.java:340)
+	at com.caucho.network.listen.TcpSocketLink.dispatchRequest(TcpSocketLink.java:730)
+	at com.caucho.network.listen.TcpSocketLink.handleRequest(TcpSocketLink.java:689)
+	at com.caucho.network.listen.TcpSocketLink.handleRequestsImpl(TcpSocketLink.java:669)
+	at com.caucho.network.listen.TcpSocketLink.handleRequests(TcpSocketLink.java:617)
+	at com.caucho.network.listen.AcceptTask.doTask(AcceptTask.java:104)
+	at com.caucho.network.listen.ConnectionReadTask.runThread(ConnectionReadTask.java:98)
+	at com.caucho.network.listen.ConnectionReadTask.run(ConnectionReadTask.java:81)
+	at com.caucho.network.listen.AcceptTask.run(AcceptTask.java:67)
+	at com.caucho.env.thread.ResinThread.runTasks(ResinThread.java:164)
+	at com.caucho.env.thread.ResinThread.run(ResinThread.java:130)
+Caused by: java.lang.NullPointerException
+	at portal.auth.AuthUser.userLoginCheck(AuthUser.java:75)
+	at portal.auth.AuthUser.userLogin(AuthUser.java:194)
+	at portal.action.LoginAction.execute(LoginAction.java:86)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doGet(ActionServlet.java:507)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:119)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:96)
+	at com.caucho.server.dispatch.ServletFilterChain.doFilter(ServletFilterChain.java:109)
+	at portal.sys.CharacterEncoding.doFilter(CharacterEncoding.java:21)
+	at com.caucho.server.dispatch.FilterFilterChain.doFilter(FilterFilterChain.java:89)
+	at com.caucho.server.webapp.WebAppFilterChain.doFilter(WebAppFilterChain.java:156)
+	at com.caucho.server.webapp.AccessLogFilterChain.doFilter(AccessLogFilterChain.java:95)
+	at com.caucho.server.dispatch.ServletInvocation.service(ServletInvocation.java:287)
+	at com.caucho.server.hmux.HmuxRequest.handleInvocation(HmuxRequest.java:469)
+	at com.caucho.server.hmux.HmuxRequest.handleRequestImpl(HmuxRequest.java:374)
+	at com.caucho.server.hmux.HmuxRequest.handleRequest(HmuxRequest.java:340)
+	at com.caucho.network.listen.TcpSocketLink.dispatchRequest(TcpSocketLink.java:730)
+	at com.caucho.network.listen.TcpSocketLink.handleRequest(TcpSocketLink.java:689)
+	at com.caucho.network.listen.TcpSocketLink.handleRequestsImpl(TcpSocketLink.java:669)
+	at com.caucho.network.listen.TcpSocketLink.handleRequests(TcpSocketLink.java:617)
+	at com.caucho.network.listen.AcceptTask.doTask(AcceptTask.java:104)
+	at com.caucho.network.listen.ConnectionReadTask.runThread(ConnectionReadTask.java:98)
+	at com.caucho.network.listen.ConnectionReadTask.run(ConnectionReadTask.java:81)
+	at com.caucho.network.listen.AcceptTask.run(AcceptTask.java:67)
+	at com.caucho.env.thread.ResinThread.runTasks(ResinThread.java:164)
+	at com.caucho.env.thread.ResinThread.run(ResinThread.java:130)
+
+
+
+
+Resin/4.0.16
+Server: 'default'
+

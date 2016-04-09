@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+.kw{
+	font-family:Verdana;
+	font-size:16px;
+	height:35px;width:500px;
+	vertical-align: middle
+}
+
+.sbutton{
+	height:41px;width:120px;font-size:16px;
+	color: white;
+    background-color: #38f;
+    border: 0px;
+    vertical-align: middle
+}
+
+.inf{
+	font-family:Verdana,Arial,Helvetica,sans-serif font:14px;
+}
+
+.result{
+	font-family:Verdana,Arial,Helvetica,sans-serif font:16px;
+}
+

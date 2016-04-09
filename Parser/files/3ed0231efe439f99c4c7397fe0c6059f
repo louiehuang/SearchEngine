@@ -1,0 +1,184 @@
+video.chaoxing.com/schooldetail_200000130.shtml
+华中师范大学精品课程__华中师范大学名师讲堂 - 超星学术视频
+9
+
+  
+
+ 
+ 
+
+ 
+  
+  
+
+
+
+
+	
+	
+
+
+	
+		
+			全部分类
+			
+				    关闭
+				
+				
+			
+		
+		
+		
+	
+
+  
+    
+      查看其他院校
+       
+        您的位置：首页&nbsp;&gt;&nbsp;全部名校&nbsp;&gt;&nbsp;
+      
+    
+    
+      
+        
+        
+        华中师范大学位于九省通衢的湖北省武汉市，坐落在武昌南湖之滨桂子山上，占地2000多亩，是中国教育部直属重点综合性师范大学，国家“211工程”重点建设的大学，国家教师教育“985”优势学科创新平台建设高校，是国家培养中、高等学校师资和其他高级专门人才的重要基地。
+ 
+　　学校具有悠久的历史，她是在1903年创办的文华...进入学校网站
+      
+      
+        
+          名师一览：
+          
+            
+          
+        
+      
+    
+    
+      
+        
+          
+        
+      
+      
+    
+     
+    
+      
+        
+          显示：
+          列表 
+          列表 
+          图片    
+          图片 
+        
+        
+      
+      
+        
+        
+          
+          1234下一页
+        
+      
+    
+    
+      
+      
+        
+        
+        
+      
+      “中国美术史源远流长，且在几个世纪以来保持了令人惊奇在延续性。”
+      “中国美术史源远流长，且在几个世纪以来保持了令人惊奇在延续性。”详细返回
+      
+    
+   
+  
+   
+ 
+   
+     
+     
+     
+     
+     
+   
+ 
+   
+    百家讲坛电子书版权声明意见反馈
+    论坛
+    客服电话（010-51665380）工作日：8:30-23:00节假日：9:00-17:00
+     
+      单位编号:1101081827　京ICP证:060172号　网络视听许可证:0110438号
+    
+     
+      Copyright&nbsp;&copy;&nbsp;1999-2015&nbsp;超星网
+    
+   
+
+';
+		    diaLog = $.dialogs({//登录
+			title:"登录",
+					blurclose:false,
+					css : {width:448, height:268},
+					autoheight:true,
+					content : function(c){
+						$(c).append(ifram);
+					}
+				});
+		    diaLog.show();  
+	 } 
+}
+function refreshuserinfo(rid,obj) {
+	var imgobj = '';
+	if(obj) {
+		$("#"+rid).html(imgobj);
+	}
+}
+refreshuserinfo("cx_user_uid",globalhead.member().uid);
+function loginsucess(t,ghead) {
+	islogin = true;
+	window.changelogin = true;
+	if (t == "cheer") {
+		cheer();
+	} else if (t == "pay") {
+	} else if (t == "plan") {
+		islogin = true;
+		if (addPlanDia != null) addPlanDia.hide();
+		window.loadplaninfo();
+				
+	} else if (t == "savenote") {
+	} else if (t == "note") {
+	} else if (t == "fav") {
+		showfavDialog();
+	} else if (t == "comment") {
+	} else if (t == "discuss") {
+		//$("#cx_user_uid").html(imgobj);
+	} else {
+		return;
+	}
+	if(document.getElementById("commentdiv")) {
+		$("#commentdiv").show();
+	}
+	if(document.getElementById("nologincomment")) {
+		$("#nologincomment").hide();
+	}
+	if(document.getElementById("userspan")) {
+		$("#userspan").html(ghead.member().nickname);
+	}
+	refreshuserinfo("cx_user_uid",ghead.member().uid);
+	islogin = true;
+	if(diaLog) {
+		diaLog.hide();
+	}
+	//reloadLoginStatus();
+	//if (dia7 != null) dia7.hide();
+}
+
+
+
+
+
+

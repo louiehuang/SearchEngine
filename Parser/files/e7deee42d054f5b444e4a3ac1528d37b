@@ -1,0 +1,278 @@
+fuxiao.ccnu.edu.cn/index.html
+华中师范大学附属小学
+9
+
+
+ 
+
+  
+  
+  	设为首页|加入收藏|匿名投稿|官方微博 |在线报名|ENGLISH
+    
+  
+  
+
+
+
+    
+     
+
+  
+  
+  
+
+    
+    
+      
+      
+        
+        
+          
+  
+  
+	
+
+&nbsp;&nbsp;|&nbsp;&nbsp;";
+    userInfo = userInfo + "退出登录";
+    userInfo = userInfo + "";
+    return userInfo;
+}
+
+function loginout(){
+    var x = new AjaxRequest('XML','');
+    x.post('userlogout', '/ajax.aspx', function(s) {
+    var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        if (status == "ok") {
+                if (xml.getElementsByTagName("API_Enable")[0].firstChild.data == "1") {
+                    var LogOutString = xml.getElementsByTagName("LogOutString")[0].firstChild.data;
+                    Loginin(LogOutString);
+                }
+         }
+        document.getElementById("TxtUserName").value = '';
+        document.getElementById("TxtPassword").value = '';
+        CheckEnableValidCode();
+        var VcodeLogOn = document.getElementById("VcodeLogOn");
+        if(VcodeLogOn  != null)
+        {
+	RefreshValdisplayDateCodeImage(VcodeLogOn);
+        }
+        document.getElementById("DropExpiration").value = 'None';
+        document.getElementById("PnlLogOnStatus").style.display = "none";
+        document.getElementById("LoginFrom").style.display = "";
+    });
+}
+
+function CheckEnableValidCode(){
+    var x = new AjaxRequest('XML', 'status');
+    x.para = [];
+    x.post('EnableValidCode', '/ajax.aspx', function(s){
+        var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        if (status == "yes") {
+            document.getElementById("checkcode").style.display = '';
+            document.getElementById("TxtValdisplayDateCode").value = '';
+        }
+    });
+}
+
+function Login(){
+    if (document.getElementById("TxtUserName").value == '') {
+        alert("请填写用户名！");
+        document.getElementById("TxtUserName").focus();
+        return;
+    }
+    if (document.getElementById("TxtPassword").value == '') {
+        alert("请填写密码！");
+        document.getElementById("TxtPassword").focus();
+        return;
+    }
+    
+    if(document.getElementById("checkcode").style.display=="")
+    {
+      if (document.getElementById("TxtValdisplayDateCode").value == '') {
+          alert("请填写验证码！");
+          document.getElementById("TxtValdisplayDateCode").focus();
+          return;
+      }
+    }
+    var x = new AjaxRequest('XML', 'status');
+    x.para = ['username=' + document.getElementById("TxtUserName").value, 'password=' + document.getElementById("TxtPassword").value, 'checkcode=' + document.getElementById("TxtValdisplayDateCode").value, 'expiration=' + document.getElementById("DropExpiration").value];
+    x.post('userlogin', '/ajax.aspx', function(s){
+        var xml = x.createXmlDom(s);
+        var status = xml.getElementsByTagName("status")[0].firstChild.data;
+        switch (status) {
+            case "ok":
+                if (xml.getElementsByTagName("API_Enable")[0].firstChild.data == "1") {
+                    var LoginString = xml.getElementsByTagName("LoginString")[0].firstChild.data;
+                    Loginin(LoginString);
+                }
+                CheckIsLogin();
+                break;
+            case "err":
+                var errorMessage = xml.getElementsByTagName("body")[0].firstChild.data;
+                alert(errorMessage);
+                break;
+
+        }
+        
+    });
+}
+
+          
+          
+          
+            
+          
+           
+          
+          
+
+          
+          
+          
+          
+          
+          
+          
+          	
+            
+          
+        
+      
+      
+      	
+        
+
+
+
+
+
+      
+      
+         
+                
+  
+
+
+  
+
+               
+         
+      
+      
+        
+          
+            
+          
+          
+          	
+              
+                
+              
+              
+                
+              
+              
+            
+            
+              
+                
+              
+              
+                
+              
+              
+            
+            
+              
+                
+                  
+                
+              
+              
+                
+              
+              
+            
+            
+              
+                
+                  
+                
+              
+              
+                
+              
+              
+            
+            
+              
+                
+                
+                
+              
+              
+                
+              
+              
+            
+          
+        
+        
+         
+          
+          
+            
+              
+            
+            
+              
+                
+              
+            
+          
+          
+          
+            
+              
+            
+            
+              
+                
+              
+            
+          
+          
+        
+        
+        
+          更多&gt;&gt;学校图库金色童年美图欣赏合影留念
+           
+            
+              
+              
+            
+          
+        
+         
+      
+      
+    
+    
+      MORE&gt;&gt;
+        
+      
+      
+        
+        
+      
+      
+    
+  
+  
+  设为首页|加入收藏|联系我们|友情链接|版权声明|管理登录
+  ? 2012　http://fuxiao.ccnu.edu.cn　All Rights Reserved 版权所有 华师附小
+维护制作：华师附小 邮箱:fuxiao@mail.ccnu.edu.cn
+
+ 

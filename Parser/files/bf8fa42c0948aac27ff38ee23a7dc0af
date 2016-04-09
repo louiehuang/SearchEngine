@@ -1,0 +1,236 @@
+lib.ccnu.edu.cn/index.html
+华中师范大学图书馆
+9
+
+
+  
+    
+      
+        
+      
+     
+      
+      
+      ENGLISH
+      旧版网页  
+      
+    
+  
+
+
+  
+    
+      &nbsp;
+      
+    
+   
+
+
+
+  
+    
+      
+	  
+	  
+	  
+
+	  
+    
+      
+      
+  
+    
+    
+  
+
+
+    
+    
+      
+        
+          
+            
+        
+      
+    
+	
+      
+        
+          
+            
+            
+			    
+		    
+          
+        
+      
+    
+    
+      
+        
+          
+            
+          
+        
+      
+    
+  
+	  
+      
+	  
+          
+          
+		  
+	  
+		  
+            
+                
+                  
+                      
+                        
+                            
+                      
+                  
+                
+                
+                  
+                      
+                        
+                            
+                              &nbsp;
+                            
+                            
+                              
+                            
+                        
+                      
+                  
+                
+            
+          
+      
+    
+  
+
+
+
+
+");
+                } else if (obj[i].settype == "2") {
+                    strForeign = obj[i].url;
+                    $('#frm_foreign').attr('action', strForeign);
+                } else if (obj[i].settype == "3") {
+                    strLogin = obj[i].url;
+                    $('#frm_login').attr('action', strLogin);
+                }
+                else if (obj[i].settype == "5") {
+                    $("#mobileurl").attr("href", obj[i].url);
+                }
+                else if (obj[i].settype == "6") {
+                    $("#oldweburl").attr("href", obj[i].url);
+                }
+                else if (obj[i].settype == "7") {
+                    $("#sinaurl").attr("href", obj[i].url);
+                }
+                else if (obj[i].settype == "8") {
+                    $("#oneWordNews").html(obj[i].desc);
+                }
+                else if (obj[i].settype == "9") {
+                    $("#englishurl").attr("href", obj[i].url);
+                }
+                
+            }
+        });
+
+//        $.get("Pages/HomeBanner.aspx", {}, function (result) {
+//            if (result != "") {
+//                $("#advImg").attr("src", result);
+//            }
+        //        });
+
+        $.get("Pages/ScrollBanner.aspx", {}, function (result) {
+            $("#scollImage").append(result);
+            scrollImg();
+        });
+
+        $.get("Pages/OnlineQQ.aspx", {}, function (result) {
+            $("body").Sonline({
+                Position: "right", //left或right
+                Top: 200, //顶部距离，默认200px
+                Effect: true, //滚动或者固定两种方式，布尔值：true或false
+                DefaultsOpen: false, //默认展开：true,默认收缩：false
+                Qqlist: result //多个QQ用','隔开，QQ和客服名用'|'隔开
+            });
+        });
+    });
+
+    function SearchLabBook() {
+        if ($('#strText').val() == "" || $('#strText').val() == "请输入检索词快速检索") {
+            alert("［查询内容］不能为空");
+            $('#strText').focus();
+        } else {
+            
+            $('#frm_labBook').submit();
+        }
+    }
+
+    function CheckChinaEcResBook() {
+        var action = $('#chinaEcResSelect').val();
+        if ($('#chinaEcResWord').val() == "" || $('#chinaEcResWord').val() == "请输入检索词快速检索" || action == "") {
+            alert("［查询内容］不能为空");
+            $('#chinaEcResWord').focus();
+            return false;
+        } else {
+            var strkey = $('#chinaEcResWord').val();
+            if (action.indexOf("cx.hbdlib.cn") <= 0) {
+                strkey = encodeURI(strkey);
+            }
+            var strAction = action.format(strkey);
+            $('#frm_chinaEcRes').attr('action', strAction);
+        }
+    }
+
+    function SearchChinaEcResBook() {
+        var action = $('#chinaEcResSelect').val();
+        if ($('#chinaEcResWord').val() == "" || $('#chinaEcResWord').val() == "请输入检索词快速检索" || action == "") {
+            alert("［查询内容］不能为空");
+            $('#chinaEcResWord').focus();
+        } else {
+            var strkey = $('#chinaEcResWord').val();
+            if (action.indexOf("cx.hbdlib.cn") <= 0) {
+                strkey = encodeURI(strkey);
+            }
+            var strAction = action.format(strkey);
+            $('#frm_chinaEcRes').attr('action', strAction);
+            $('#frm_chinaEcRes').submit();
+        }
+    }
+
+    function SearchForeign() {
+        if ($('#strWord').val() == "" || $('#strWord').val() == "请输入外文电子期刊名称") {
+            alert("［查询内容］不能为空");
+            $('#strWord').focus();
+        } else {
+            $('#frm_foreign').submit();
+        }
+    }
+
+    function UserLogin() {
+        if ($('#number').val() == "") {
+            alert("［帐号］不能为空");
+            $('#number').focus();
+        } else if ($('#passwd').val() == "") {
+            alert("［密码］不能为空");
+            $('#passwd').focus();
+        } else {
+            $('#frm_login').submit();
+            if ($('#remember').val() == "1") {
+                //写CookieS 
+                var cookieHelper = new CookiesHelper();
+                cookieHelper.SetCookiesValue("ccnulibName", $('#number').val());
+                cookieHelper.SetCookiesValue("ccnulibPwd", $('#passwd').val());
+            }
+        }
+    }
+
+
